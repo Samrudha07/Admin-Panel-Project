@@ -1,0 +1,56 @@
+.profile-details {
+  background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 50px auto;
+}
+
+.profile-matching p{
+  font-size: 3px;
+  
+}
+.profile-details h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.profile-details img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.profile-details p {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.profile-details button {
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.7s ease-out;
+  font-weight: 900;
+  margin-right: 7px;
+  margin-top: 7px;
+}
+
+.profile-details button:hover {
+  background-color: #465546;
+  color: white;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  font-size: 16px;
+}

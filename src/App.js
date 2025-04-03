@@ -1,25 +1,62 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ProfileList from "./Component/ProfileList";
+import ProfileDetails from "./Component/ProfileDetails";
+import MapView from "./Component/MapView";
+import AdminPanel from "./Component/AdminPanel";
+import profilesData from "./data/profiles.json";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [profiles, setProfiles] = useState([]);
+  const [selectedProfile, setSelectedProfile] = useState(null);
+
+  useEffect(() => {
+    setProfiles(profilesData);
+  }, []);
+
+  const handleProfileSelect = (profile) => {
+    setSelectedProfile(profile);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="app-container">
+        <Routes>
+          <Route path="/" element={<AdminPanel setProfiles={setProfiles} />} />
+          <Route
+            path="/profiles"
+            element={
+              <ProfileList
+                profiles={profiles}
+                onSelectProfile={handleProfileSelect}
+              />
+            }
+          />
+          <Route
+            path="/profile-details"
+            element={
+              selectedProfile ? (
+                <ProfileDetails profile={selectedProfile} />
+              ) : (
+                <p style={{ color: "white" }}>No profile selected</p>
+              )
+            }
+          />
+          <Route
+            path="/map"
+            element={
+              selectedProfile ? (
+                <MapView profile={selectedProfile} />
+              ) : (
+                <p style={{ color: "white" }}>No profile selected</p>
+              )
+            }
+          />
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
